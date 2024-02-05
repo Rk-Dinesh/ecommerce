@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MobileLogo from "../../assets/Bg.png";
+
 import { API } from '../../host';
 
 function Login({ setToken }) {
@@ -27,7 +27,7 @@ function Login({ setToken }) {
                 'Content-Type': 'application/json',
             };
             
-            const response = await axios.post(`${API}/adminlogin`, formData, { headers });
+            const response = await axios.post(`${API}/login`, formData, { headers });
             const { token } = response.data;
             
             setToken(token);
@@ -42,13 +42,13 @@ function Login({ setToken }) {
     }
 
     return (
-        <section className="vh-100" style={{ backgroundImage: `url(${MobileLogo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <section className="vh-100" >
            <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div className="card shadow-2-strong " style={{ borderRadius: "1rem" }}>
                             <div className="card-body p-5" style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
-                                <h6 className="mb-2 text-center" style={{ color: '#17273D', fontWeight : 'bolder' } }>Pro Tutor</h6>
+                                <h6 className="mb-2 text-center" style={{ color: '#17273D', fontWeight : 'bolder' } }>Ecommerce</h6>
                                 {/* <h6 className="mb-2 text-center">Sign in</h6> */}
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-outline mb-3">
