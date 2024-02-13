@@ -10,30 +10,7 @@ export const menuItems = [
     icon: "heroicons-outline:home",
     link: "dashboard"
   },
-  {
-    title: "Category",
-    isHide: true,
-    icon: "heroicons-outline:adjustments-horizontal",
-    link: "categories"
-  },
-  {
-    title: "Teacher",
-    isHide: true,
-    icon: "heroicons-outline:user",
-     link: "teacher"
-  },
-  {
-    title: "Student",
-    isHide: true,
-    icon: "ph:student",
-    link: "student"
-  },
-  {
-    title: "Parent",
-    isHide: true,
-    icon: "ri:parent-line",
-    link: "parent"
-  },
+ 
  
   {
     title: "Admin",
@@ -42,13 +19,14 @@ export const menuItems = [
     link: "admin"
   },
   {
-    title: "Subscription Plan",
+    title: "Products",
     isHide: true,
-    icon: "streamline:subscription-cashflow",
-    link: "plan"
+    icon: "eos-icons:admin-outlined",
+    link: "products"
   },
+  
   {
-    title: "Subscribers",
+    title: "RecentPurchases",
     isHide: true,
     icon: "wpf:renew-subscription",
     link: "subscribers"

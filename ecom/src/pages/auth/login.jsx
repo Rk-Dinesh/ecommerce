@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { API } from '../../host';
 
 function Login({ setToken }) {
-    
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -26,30 +23,34 @@ function Login({ setToken }) {
             const headers = {
                 'Content-Type': 'application/json',
             };
-            
-            const response = await axios.post(`${API}/login`, formData, { headers });
+            console.log(formData)
+            const response = await axios.post(`${API}/adminlogin`, formData);
             const { token } = response.data;
             
             setToken(token);
             localStorage.setItem('token', token);
             toast.success('Login successful');
             navigate('/dashboard');
+            // Clear form data after successful login
+            setFormData({ email: '', password: '' });
 
         } catch (error) {
-            console.error(error.response);
-            toast.error('Invalid credentials');
+            if (error.response && error.response.status === 401) {
+                toast.error('Invalid email or password');
+            } else {
+                toast.error('An error occurred. Please try again later.');
+            }
         }
     }
 
     return (
-        <section className="vh-100" >
+        <section className="vh-100">
            <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div className="card shadow-2-strong " style={{ borderRadius: "1rem" }}>
                             <div className="card-body p-5" style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
-                                <h6 className="mb-2 text-center" style={{ color: '#17273D', fontWeight : 'bolder' } }>Ecommerce</h6>
-                                {/* <h6 className="mb-2 text-center">Sign in</h6> */}
+                                <h6 className="mb-2 text-center" style={{ color: '#17273D', fontWeight : 'bolder' } }>Ecom</h6>
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-outline mb-3">
                                         <label className="form-label" htmlFor="email">
@@ -87,7 +88,6 @@ function Login({ setToken }) {
                                         </button>
                                     </div>
                                 </form>
-                                {/* Able to add a registration link here */}
                             </div>
                         </div>
                     </div>
